@@ -55,17 +55,38 @@ export default function Navigation({ lenisRef }: NavigationProps) {
         transform: 'translateY(-80px)',
       }}
     >
-      <div
+      <a
+        href="#hero"
+        onClick={(e) => handleClick(e, '#hero')}
         style={{
-          fontFamily: 'var(--font-sans)',
-          fontWeight: 700,
-          fontSize: '24px',
-          color: '#FFFFFF',
-          letterSpacing: '0.05em',
+          display: 'flex',
+          alignItems: 'center',
+          gap: '12px',
+          textDecoration: 'none',
+          cursor: 'pointer',
         }}
       >
-        AI 装机部落
-      </div>
+        <img
+          src="/logo.png"
+          alt="AI装机部落"
+          style={{
+            width: '40px',
+            height: '40px',
+            objectFit: 'contain',
+          }}
+        />
+        <span
+          style={{
+            fontFamily: 'var(--font-sans)',
+            fontWeight: 700,
+            fontSize: '20px',
+            color: '#FFFFFF',
+            letterSpacing: '0.05em',
+          }}
+        >
+          AI 装机部落
+        </span>
+      </a>
 
       {/* Desktop nav */}
       <div
