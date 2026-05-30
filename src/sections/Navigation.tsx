@@ -14,6 +14,7 @@ const navItems = [
   { label: '04. 愿景', target: '#vision' },
   { label: '05. 联络', target: '#contact' },
   { label: '06. 博客', target: '/blog', isRoute: true },
+  { label: '07. 分佣', target: '/commission', isRoute: true },
 ]
 
 export default function Navigation({ lenisRef }: NavigationProps) {

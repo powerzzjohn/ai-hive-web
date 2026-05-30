@@ -15,6 +15,7 @@ import Contact from './sections/Contact'
 import Footer from './sections/Footer'
 import BlogList from './pages/BlogList'
 import BlogPost from './pages/BlogPost'
+import Commission from './pages/Commission'
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -80,6 +81,7 @@ function App() {
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/blog/*" element={<BlogLayout />} />
+        <Route path="/commission" element={<Commission />} />
       </Routes>
     </div>
   )
