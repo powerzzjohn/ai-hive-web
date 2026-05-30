@@ -71,7 +71,7 @@ export default function Contact() {
           告诉我们你的想法。剩下的，交给AI装机部落。
         </p>
         <a
-          href="mailto:zhou82118@gmail.com"
+          href="mailto:powerzzjohn@qq.com"
           style={{
             fontFamily: 'var(--font-mono)',
             fontWeight: 700,
@@ -91,7 +91,7 @@ export default function Contact() {
             el.style.borderBottom = '1px solid transparent'
           }}
         >
-          zhou82118@gmail.com
+          powerzzjohn@qq.com
         </a>
 
         <div

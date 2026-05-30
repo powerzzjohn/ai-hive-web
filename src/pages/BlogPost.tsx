@@ -90,7 +90,7 @@ export default function BlogPost() {
             告诉我们你的想法，剩下的交给 AI装机部落。
           </p>
           <div style={{ fontFamily: 'var(--font-mono)', fontSize: '16px', color: '#00FFF3' }}>
-            <a href="mailto:zhou82118@gmail.com" style={{ color: '#00FFF3', textDecoration: 'none' }}>zhou82118@gmail.com</a>
+            <a href="mailto:powerzzjohn@qq.com" style={{ color: '#00FFF3', textDecoration: 'none' }}>powerzzjohn@qq.com</a>
             <span style={{ color: '#444444', margin: '0 12px' }}>/</span>
             <span>18898682118（同微信）</span>
           </div>

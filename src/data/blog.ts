@@ -119,7 +119,7 @@ export const blogPosts: BlogPost[] = [
 如果你也有类似的需求——无论是招聘、电商、内容创作还是数据分析——欢迎联系我们。
 
 **联系方式：**
-- 邮箱：zhou82118@gmail.com
+- 邮箱：powerzzjohn@qq.com
 - 微信/手机：18898682118
 - 公众号：疗愈师阿Q
 
