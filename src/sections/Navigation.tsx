@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
+import { useNavigate } from 'react-router'
 import Lenis from 'lenis'
 import gsap from 'gsap'
 
@@ -12,11 +13,13 @@ const navItems = [
   { label: '03. 场景', target: '#scenarios' },
   { label: '04. 愿景', target: '#vision' },
   { label: '05. 联络', target: '#contact' },
+  { label: '06. 博客', target: '/blog', isRoute: true },
 ]
 
 export default function Navigation({ lenisRef }: NavigationProps) {
   const navRef = useRef<HTMLElement>(null)
   const [mobileOpen, setMobileOpen] = useState(false)
+  const navigate = useNavigate()
 
   useEffect(() => {
     if (navRef.current) {
@@ -28,10 +31,19 @@ export default function Navigation({ lenisRef }: NavigationProps) {
     }
   }, [])
 
-  const handleClick = (e: React.MouseEvent, target: string) => {
+  const handleClick = (e: React.MouseEvent, target: string, isRoute?: boolean) => {
     e.preventDefault()
-    if (lenisRef.current) {
+    if (isRoute) {
+      navigate(target)
+    } else if (lenisRef.current) {
       lenisRef.current.scrollTo(target)
+    } else {
+      // Fallback: if no lenis (blog pages), navigate to home then scroll
+      navigate('/')
+      setTimeout(() => {
+        const el = document.getElementById(target.replace('#', ''))
+        if (el) el.scrollIntoView({ behavior: 'smooth' })
+      }, 100)
     }
     setMobileOpen(false)
   }
@@ -56,8 +68,8 @@ export default function Navigation({ lenisRef }: NavigationProps) {
       }}
     >
       <a
-        href="#hero"
-        onClick={(e) => handleClick(e, '#hero')}
+        href="/"
+        onClick={(e) => { e.preventDefault(); navigate('/') }}
         style={{
           display: 'flex',
           alignItems: 'center',
@@ -101,7 +113,7 @@ export default function Navigation({ lenisRef }: NavigationProps) {
           <a
             key={item.target}
             href={item.target}
-            onClick={(e) => handleClick(e, item.target)}
+            onClick={(e) => handleClick(e, item.target, item.isRoute)}
             style={{
               fontFamily: 'var(--font-mono)',
               fontSize: '14px',

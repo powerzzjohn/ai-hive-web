@@ -1,4 +1,5 @@
-import { useEffect, useRef } from 'react'
+import { useEffect, useRef, Suspense, lazy } from 'react'
+import { Routes, Route } from 'react-router'
 import Lenis from 'lenis'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
@@ -11,12 +12,16 @@ import Scenarios from './sections/Scenarios'
 import Founder from './sections/Founder'
 import Vision from './sections/Vision'
 import Contact from './sections/Contact'
-import TunnelTransition from './sections/TunnelTransition'
 import Footer from './sections/Footer'
+import BlogList from './pages/BlogList'
+import BlogPost from './pages/BlogPost'
 
 gsap.registerPlugin(ScrollTrigger)
 
-function App() {
+// Lazy load Three.js tunnel for performance
+const TunnelTransition = lazy(() => import('./sections/TunnelTransition'))
+
+function HomePage() {
   const lenisRef = useRef<Lenis | null>(null)
 
   useEffect(() => {
@@ -39,7 +44,7 @@ function App() {
   }, [])
 
   return (
-    <div style={{ background: '#000000', minHeight: '100vh' }}>
+    <>
       <Navigation lenisRef={lenisRef} />
       <Hero />
       <Manifesto />
@@ -48,8 +53,34 @@ function App() {
       <Founder />
       <Vision />
       <Contact />
-      <TunnelTransition />
+      <Suspense fallback={<div style={{ height: '100vh', background: '#000000' }} />}>
+        <TunnelTransition />
+      </Suspense>
       <Footer />
+    </>
+  )
+}
+
+function BlogLayout() {
+  return (
+    <>
+      <Navigation lenisRef={{ current: null }} />
+      <Routes>
+        <Route path="/" element={<BlogList />} />
+        <Route path="/:slug" element={<BlogPost />} />
+      </Routes>
+      <Footer />
+    </>
+  )
+}
+
+function App() {
+  return (
+    <div style={{ background: '#000000', minHeight: '100vh' }}>
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/blog/*" element={<BlogLayout />} />
+      </Routes>
     </div>
   )
 }
